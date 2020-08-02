@@ -55,8 +55,8 @@
                                 .append($('<td>').text(mypage.price))
                                 .append($('<td>').text(mypage.address))
                                 .append($('<td>').text(mypage.host))
-                                .append($('<td>').append($('<a>').attr({class: 'Button bg-red', href: "javascript:openReviewAddView('"+mypage.status+"','"+mypage.bookId+"')"}).text('리뷰작성')))
-                            );
+<!--                                .append($('<td>').append($('<a>').attr('href', "javascript:openReviewAddView('"+mypage.status+"','"+mypage.bookId+"')").text('리뷰작성')))-->
+                                .append($('<td>').text(mypage.couponCode == null ? "-" : mypage.couponCode))                            );
                     }
                 }
             },
@@ -128,7 +128,8 @@
                             <th>숙소 가격</th>
                             <th>숙소 주소</th>
                             <th>숙소 호스트</th>
-                            <th>리뷰작성하기</th>
+                            <!--        <th>리뷰작성하기</th>-->
+                            <th>쿠폰</th>
                         </tr>
                         </thead>
                         <tbody>
