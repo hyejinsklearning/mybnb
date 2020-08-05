@@ -17,7 +17,8 @@ spec:
     spec:
       containers:
         - name: coupon
-          image: 496278789073.dkr.ecr.ap-northeast-2.amazonaws.com/mybnb-coupon:latest
+          image: 052937454741.dkr.ecr.ap-northeast-2.amazonaws.com/skccuser18-coupon:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
 #          readinessProbe:
