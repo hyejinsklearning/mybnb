@@ -46,7 +46,7 @@ metadata:
   name: event
   namespace: mybnb
   labels:
-    app: Event
+    app: event
 spec:
   ports:
     - port: 8080
