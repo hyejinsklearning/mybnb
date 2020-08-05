@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
-@FeignClient(name="event", url="${api.url.payment}")
+@FeignClient(name="event", url="${api.url.event}")
 public interface EventService {
     // url 을 configmap에 넣기.
     @RequestMapping(method= RequestMethod.POST, path="/events")

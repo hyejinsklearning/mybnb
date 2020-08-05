@@ -58,6 +58,7 @@ public class Room {
 
         RoomApplication.applicationContext.getBean(mybnb.external.EventService.class)
                 .apply(event);
+
         // 이벤트 참여 후 숙소 등록 완료
         RoomRegistered roomRegistered = new RoomRegistered();
         BeanUtils.copyProperties(this, roomRegistered);

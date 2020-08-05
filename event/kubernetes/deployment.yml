@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: event
+  namespace: mybnb
   labels:
     app: event
 spec:
@@ -16,7 +17,7 @@ spec:
     spec:
       containers:
         - name: event
-          image: username/Event:latest
+          image: username/event:latest
           ports:
             - containerPort: 8080
           readinessProbe:
