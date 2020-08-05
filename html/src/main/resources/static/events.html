@@ -8,65 +8,58 @@
     <script type="text/javascript">
 
     jQuery(document).ready(function(){
-        loadRooms();
+        loadEvents();
 
-        $("#btnRooms").click(function() {
-            loadRooms();
+        $("#btnEvents").click(function() {
+            loadEvents();
         });
     });
 
-    function loadRooms() {
-        $('#tblRooms tbody').empty();
+    function loadEvents() {
+        $('#tblEvents tbody').empty();
 
         $.ajax({
             type: "GET",
             contentType: "application/json",
             dataType: 'json',
-            url: "/rooms",
+            url: "/events",
             success: function(result){
                 console.log(result);
-                //var totalcnt = result.page.totalElements;
-                var rooms = result._embedded.rooms;
+                var events = result._embedded.events;
 
-                if(rooms.length < 1 ){
-                    $('#tblRooms > tbody:last-child')
+                if(alarms.length < 1 ){
+                    $('#tblEvents > tbody:last-child')
                         .append($('<tr>').attr('style', 'text-align:center;')
-                            .append($('<td>').attr('colspan', '6').text('NO DATA'))
+                            .append($('<td>').attr('colspan', '3').text('NO DATA'))
                         );
                 }
                 else {
-                    for(var i=0; i<rooms.length; i++){
-                        var room = rooms[i];
-                        var roomhref = room._links.room.href;
+                    for(var i=0; i<events.length; i++){
+                        var event = events[i];
+                        var eventhref = event._links.event.href;
 
-                        var tmp = roomhref.split("/");
-                        var roomId = tmp[tmp.length-1];
+                        var tmp = eventhref.split("/");
+                        var eventId = tmp[tmp.length-1];
 
-                        $('#tblRooms > tbody:last-child')
+                        $('#tblEvents > tbody:last-child')
                             .append($('<tr>').attr('style', 'text-align:center;')
-                                .append($('<td>').text(roomId))
-                                .append($('<td>').text(room.name))
-                                .append($('<td>').text(room.price))
-                                .append($('<td>').text(room.address))
-                                .append($('<td>').text(room.host))
-                                .append($('<td>').append($('<a>').attr({class: 'Button bg-red', href: 'javascript:openBookingAddView('+roomId+')'}).text('예약하기')))
+                                .append($('<td>').text(alarmId))
+                                .append($('<td>').text(alarm.hostName))
+                                .append($('<td>').text(alarm.roomId))
+                                .append($('<td>').text(alarm.roomName))
                             );
                     }
                 }
             },
             error: function (status) {
-                $('#tblRooms > tbody:last-child')
+                $('#tblAlarms > tbody:last-child')
                     .append($('<tr>').attr('style', 'text-align:center; color:red;')
-                        .append($('<td>').attr('colspan', '6').text('조회 실패'))
+                        .append($('<td>').attr('colspan', '3').text('조회 실패'))
                     );
              }
         });
     }
 
-    function openBookingAddView(roomId) {
-        var url = "book.html?"+roomId;
-        window.open(url,"","width=500,height=400");
-    }
     </script>
 
 </head>
@@ -84,7 +77,7 @@
                 <!--                <li><a href="reviews.html">리뷰이력</a></li>-->
                 <!--                <li><a href="alarms.html">알림이력</a></li>-->
                 <li><a href="coupons.html">쿠폰관리</a></li>
-                <li><a href="events.html">이벤트</a></li>
+                <li class="selected"><a href="events.html">이벤트</a></li>
             </ul>
         </nav>
     </div>
@@ -93,7 +86,7 @@
         <div class="contents-wrap">
             <div class="contents-box">
                 <div class="contents-area">
-                    <h2 class="title">숙소를 예약하세요</h2>
+                    <h2 class="title">이벤트 참여이력</h2>
                     <div class="title-line"></div>
 
                     <div class="btn-wrap">
@@ -101,29 +94,29 @@
 
                         </div>
                         <div class="btn-right">
-                            <button class="Button bg-gray" id="btnRooms">새로고침</button>
+                            <button class="Button bg-gray" id="btnEvents">새로고침</button>
                         </div>
                     </div>
 
-                    <table class="Table" id="tblRooms">
+                    <table class="Table" id="tblEvents">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>이름</th>
-                                <th>가격</th>
-                                <th>주소</th>
-                                <th>호스트</th>
-                                <th>예약하기</th>
-                            </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>참여자 이름</th>
+                            <th>숙소ID</th>
+                            <th>숙소이름</th>
+                        </tr>
                         </thead>
                         <tbody>
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>
 
