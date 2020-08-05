@@ -11,7 +11,7 @@ public class PolicyHandler{
     @Autowired
     CouponRepository couponRepository;
 
-    private int issuePricePoint = 100000;
+    private final int issuePricePoint = 100000;
 
     @StreamListener(KafkaProcessor.INPUT)
     public void onStringEventListener(@Payload String eventString){

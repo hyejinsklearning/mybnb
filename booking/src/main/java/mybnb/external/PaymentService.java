@@ -12,6 +12,6 @@ import java.util.Date;
 public interface PaymentService {
 
     @RequestMapping(method= RequestMethod.POST, path="/payments")
-    public void pay(@RequestBody Payment payment);
+    void pay(@RequestBody Payment payment);
 
 }

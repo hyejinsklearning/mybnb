@@ -17,9 +17,16 @@ spec:
     spec:
       containers:
         - name: alarm
-          image: jihwancha/mybnb-alarm:latest
+          image: 496278789073.dkr.ecr.ap-northeast-2.amazonaws.com/mybnb-alarm:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
+          env:
+            - name: alarm.prefix
+              valueFrom:
+                configMapKeyRef:
+                  name: mybnb-config
+                  key: alarm.prefix
           readinessProbe:
             httpGet:
               path: '/actuator/health'

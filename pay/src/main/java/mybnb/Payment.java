@@ -111,7 +111,7 @@ public class Payment {
 
             // 결제이력을 저장한 후 적당한 시간 끌기
             try {
-                Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+                Thread.sleep((long) (400 + Math.random() * 220));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
