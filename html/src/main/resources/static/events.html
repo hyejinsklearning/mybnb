@@ -27,7 +27,7 @@
                 console.log(result);
                 var events = result._embedded.events;
 
-                if(alarms.length < 1 ){
+                if(events.length < 1 ){
                     $('#tblEvents > tbody:last-child')
                         .append($('<tr>').attr('style', 'text-align:center;')
                             .append($('<td>').attr('colspan', '3').text('NO DATA'))
@@ -43,16 +43,16 @@
 
                         $('#tblEvents > tbody:last-child')
                             .append($('<tr>').attr('style', 'text-align:center;')
-                                .append($('<td>').text(alarmId))
-                                .append($('<td>').text(alarm.hostName))
-                                .append($('<td>').text(alarm.roomId))
-                                .append($('<td>').text(alarm.roomName))
+                                .append($('<td>').text(eventId))
+                                .append($('<td>').text(event.hostName))
+                                .append($('<td>').text(event.roomId))
+                                .append($('<td>').text(event.roomName))
                             );
                     }
                 }
             },
             error: function (status) {
-                $('#tblAlarms > tbody:last-child')
+                $('#tblEvents > tbody:last-child')
                     .append($('<tr>').attr('style', 'text-align:center; color:red;')
                         .append($('<td>').attr('colspan', '3').text('조회 실패'))
                     );
