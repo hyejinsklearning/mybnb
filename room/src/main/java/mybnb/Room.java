@@ -49,6 +49,16 @@ public class Room {
 
     @PostPersist
     public void onPostPersist(){
+        // 비동기로 이벤트 서비스를 호출한다.
+        mybnb.external.Event event = new mybnb.external.Event();
+        // 이벤트 mapping 설정
+        event.setHostName(getHost());
+        event.setRoomId(getId());
+        event.setRoomName(getName());
+
+        RoomApplication.applicationContext.getBean(mybnb.external.EventService.class)
+                .apply(event);
+        // 이벤트 참여 후 숙소 등록 완료
         RoomRegistered roomRegistered = new RoomRegistered();
         BeanUtils.copyProperties(this, roomRegistered);
         roomRegistered.publishAfterCommit();

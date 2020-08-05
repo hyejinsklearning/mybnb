@@ -30,6 +30,9 @@ spring:
         event-out:
           destination: mybnb
           contentType: application/json
+api:
+  url:
+    event: http://localhost:8089
 
 logging:
   level:
